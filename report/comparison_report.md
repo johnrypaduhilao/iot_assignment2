@@ -10,11 +10,12 @@
 
 > Run `pytest tests/mqtt/test_qos_loss.py -v -s` and paste the output table here.
 
+
 | Protocol / QoS | Sent | Received | Lost (%) | Duplicates | Avg Latency (ms) |
 |----------------|------|----------|----------|------------|-----------------|
-| MQTT QoS 0 | | | | | |
-| MQTT QoS 1 | | | | | |
-| MQTT QoS 2 | | | | | |
+| MQTT QoS 0 | 100 | 100| 0 | 0.0% | 0.7 |
+| MQTT QoS 1 | 100 | 100 | 0 | 0.0% | 0.7 |
+| MQTT QoS 2 | 100 | 100 | 0 | 0.0% | 1.3 |
 | CoAP NON | | | | | |
 | CoAP CON | | | | | |
 | AMQP (confirms off) | | | | | |
@@ -41,10 +42,10 @@
 
 | HTTP Header | CoAP Option | Your Observed Value |
 |-------------|-------------|---------------------|
-| Content-Type | | |
-| Cache-Control: max-age | | |
-| ETag | | |
-| Location | | |
+| Content-Type | Content-Format (12) | application/json which is the innterpretation for CoAP Content Format(50) that server returns |
+| Cache-Control: max-age | Max-Age (14) | Max-Age will be 60 since this is the default value if not overridden which our server did not. |
+| ETag | ETag (4) | None. Server did not set any ETags |
+| Location | Location-Path (8) | None. This only appears if we use resources that uses POST specifically 2.01 Created. Because we used GET automatically there is None. |
 
 ---
 
