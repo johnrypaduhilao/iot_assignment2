@@ -36,7 +36,7 @@ refer to Module1_Assignment.docx for the full specification
 #    Task 4 → bash scripts/capture.sh → annotate report/packet_analysis.md
 #    Task 5 → report/comparison_report.md 
 
-# 5. Run all tests before submitting (AMQP tests are expected to fail because it is not implemented.)
+# 5. Run all tests before submitting (AMQP tests are expected to fail because it is not implemented. Make sure it has write permissions ex. chmod +x .venv/bin/pytest)
 pytest tests/ -v --tb=short 
 ```
 
