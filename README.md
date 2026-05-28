@@ -1,5 +1,11 @@
 # Module 1 Assignment — SmartFactory IoT Protocol Integration
 
+**Student Name:** Johnry Christian Paduhilao
+**Student ID:**   101002576
+**Date:**        May 28, 2026
+
+---
+
 **Real-Time Data Analytics for IoT** · Graduate Course · Module 1
 
 ---
@@ -7,21 +13,31 @@
 ## Quick Start
 
 ```bash
-# 1. Install dependencies and start Docker services
-bash setup.sh
+#Some steps are updated due to fix local machine's package issues . Added a tag (ADDED!) as my personal added step
 
-# 2. Read the full assignment specification
-open Module1_Assignment.docx
+# 1. Start Docker services (Mosquitto for MQTT) (ADDED!) 
+docker compose up -d mosquitto rabbitmq
 
-# 3. Work through the tasks in order:
+# 2. Install dependencies and start Docker services
+#bash setup.sh <- ORIGINAL Step 2
+python3 -m venv .venv #(ADDED!) 
+source .venv/bin/activate #(ADDED!) 
+pip install --upgrade pip #(ADDED!) 
+pip install -r requirements.txt #(ADDED!) 
+
+
+# 3. Read the full assignment specification
+refer to Module1_Assignment.docx for the full specification
+
+# 4. Work through the tasks in order:
 #    Task 1 → src/mqtt/publisher.py  + src/mqtt/subscriber.py
 #    Task 2 → src/coap/server.py     + src/coap/observer.py
 #    Task 3 → src/amqp/topology.py   + src/amqp/producer.py   + src/amqp/consumer.py
 #    Task 4 → bash scripts/capture.sh → annotate report/packet_analysis.md
-#    Task 5 → report/comparison_report.md
+#    Task 5 → report/comparison_report.md 
 
-# 4. Run all tests before submitting
-pytest tests/ -v --tb=short
+# 5. Run all tests before submitting (AMQP tests are expected to fail because it is not implemented.)
+pytest tests/ -v --tb=short 
 ```
 
 ---
@@ -136,13 +152,22 @@ docker compose logs -f rabbitmq
 
 Before zipping and submitting:
 
-- [ ] All 7 source files have TODO sections completed
-- [ ] `pytest tests/ -v` passes (or partial passes documented)
-- [ ] `captures/` contains mqtt.pcap, coap.pcap, amqp.pcap
-- [ ] `report/packet_analysis.md` — all annotation tables filled in
-- [ ] `report/comparison_report.md` — all sections written (1500–2000 words total)
-- [ ] README.md updated with your name and any notes for the marker
+- [ ] All 7 source files have TODO sections completed (Ignored AMQP per instructions)
+- [ ] `pytest tests/ -v` passes (or partial passes documented) (Except AMQP)
+- [ ] `captures/` contains mqtt.pcap, coap.pcap, amqp.pcap (Ignored AMQP per instructions)
+- [x] `report/packet_analysis.md` — all annotation tables filled in
+- [x] `report/comparison_report.md` — all sections written (1500–2000 words total)
+- [x] README.md updated with your name and any notes for the marker
 
 ---
+
+## Important Notes
+- Task 3 (AMQP) and Section 4.4 omitted per professor instructions;
+  src/amqp/*.py files remain as unmodified skeletons
+- tests/coap/test_proxy.py written by me (was missing from the starter kit)
+- Task 1.3 referenced "analysis questions in the starter kit" but no separate file
+  was distributed;
+- pytest-asyncio pinned to 0.21.2 in requirements.txt; newer versions deprecate
+  the kit's fixture pattern and break the CoAP tests
 
 *Graduate Course: Real-Time Data Analytics for IoT · Module 1*
